@@ -1,6 +1,7 @@
 plugins {
     java
     application
+    kotlin("jvm") version "1.9.22"
     id("org.javamodularity.moduleplugin") version "1.8.15"
     id("org.openjfx.javafxplugin") version "0.0.13"
     id("org.beryx.jlink") version "2.25.0"
@@ -50,8 +51,8 @@ dependencies {
     }
     implementation("com.github.almasb:fxgl:17.3") {
         exclude(group = "org.openjfx")
-        exclude(group = "org.jetbrains.kotlin")
     }
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.22")
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 }

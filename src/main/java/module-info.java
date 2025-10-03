@@ -10,6 +10,7 @@ module org.example.metodiapp {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires kotlin.stdlib;
 
     opens org.example.metodiapp to javafx.fxml;
     exports org.example.metodiapp;
