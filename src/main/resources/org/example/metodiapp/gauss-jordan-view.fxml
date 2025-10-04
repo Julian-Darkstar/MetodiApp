@@ -7,9 +7,10 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
 
 <BorderPane prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.metodiapp.controllers.GaussJordanController">
     <top>
@@ -19,12 +20,13 @@
             </padding>
             <children>
                 <Label styleClass="h3" text="Método de Eliminación de Gauss-Jordan" />
+                <Label text="Instrucciones: Ingrese las dimensiones de la matriz aumentada (incluyendo la columna de resultados) y presione 'Crear Matriz'." wrapText="true" />
                 <HBox alignment="CENTER_LEFT" spacing="10.0">
                     <children>
                         <Label text="Filas (m):" />
-                        <TextField fx:id="filasTextField" prefWidth="60" />
+                        <TextField fx:id="filasTextField" prefWidth="60" promptText="Ej: 3" />
                         <Label text="Columnas (n):" />
-                        <TextField fx:id="columnasTextField" prefWidth="60" />
+                        <TextField fx:id="columnasTextField" prefWidth="60" promptText="Ej: 4" />
                         <Button fx:id="crearMatrizButton" onAction="#crearMatriz" text="Crear Matriz" />
                     </children>
                 </HBox>
@@ -32,15 +34,24 @@
         </VBox>
     </top>
     <center>
-        <ScrollPane fitToWidth="true" prefHeight="200.0">
-            <content>
-                <GridPane fx:id="matrizGridPane" hgap="5" vgap="5">
+        <VBox>
+            <children>
+                <GridPane fx:id="headerGridPane" hgap="5" vgap="2">
                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                        <Insets left="10.0" right="10.0" top="5.0" />
                     </padding>
                 </GridPane>
-            </content>
-        </ScrollPane>
+                <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS">
+                    <content>
+                        <GridPane fx:id="matrizGridPane" hgap="5" vgap="5">
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="5.0" />
+                            </padding>
+                        </GridPane>
+                    </content>
+                </ScrollPane>
+            </children>
+        </VBox>
     </center>
     <bottom>
         <VBox spacing="10">
@@ -50,7 +61,7 @@
             <children>
                 <HBox alignment="CENTER_LEFT" spacing="10.0">
                     <children>
-                        <Button fx:id="resolverButton" onAction="#resolverMatriz" text="Resolver" styleClass="button-primary"/>
+                        <Button fx:id="resolverButton" onAction="#resolverMatriz" text="Resolver" styleClass="button-primary" />
                         <Button fx:id="reiniciarButton" onAction="#reiniciar" text="Reiniciar" />
                         <Region HBox.hgrow="ALWAYS" />
                         <Button fx:id="volverButton" onAction="#volver" text="Volver" />
