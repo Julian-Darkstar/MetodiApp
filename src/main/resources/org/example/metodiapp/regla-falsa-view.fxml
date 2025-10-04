@@ -8,13 +8,12 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.metodiapp.ReglaFalsaController">
+<BorderPane prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.metodiapp.controllers.ReglaFalsaController">
     <top>
         <HBox alignment="CENTER_LEFT" prefHeight="50.0" spacing="10.0">
             <padding>
@@ -91,36 +90,14 @@
                 <Label text="Resultados de Iteraciones:" />
                 <TableView fx:id="tablaResultados" prefHeight="150.0">
                     <columns>
-                        <TableColumn prefWidth="50.0" text="Iter">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="iteracion" />
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn prefWidth="100.0" text="a">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="a" />
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn prefWidth="100.0" text="b">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="b" />
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn prefWidth="100.0" text="c">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="c" />
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn prefWidth="100.0" text="f(c)">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="fc" />
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn prefWidth="100.0" text="Error">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="error" />
-                            </cellValueFactory>
-                        </TableColumn>
+                        <TableColumn fx:id="colIteracion" prefWidth="50.0" text="Iter" />
+                        <TableColumn fx:id="colA" prefWidth="90.0" text="a" />
+                        <TableColumn fx:id="colB" prefWidth="90.0" text="b" />
+                        <TableColumn fx:id="colFa" prefWidth="90.0" text="f(a)" />
+                        <TableColumn fx:id="colFb" prefWidth="90.0" text="f(b)" />
+                        <TableColumn fx:id="colXr" prefWidth="90.0" text="Xr" />
+                        <TableColumn fx:id="colFxr" prefWidth="90.0" text="f(Xr)" />
+                        <TableColumn fx:id="colError" prefWidth="90.0" text="Error" />
                     </columns>
                 </TableView>
                 <HBox alignment="CENTER_LEFT" prefHeight="40.0" spacing="10.0">

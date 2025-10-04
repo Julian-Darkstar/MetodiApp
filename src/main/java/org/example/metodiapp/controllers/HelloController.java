@@ -1,7 +1,8 @@
-package org.example.metodiapp;
+package org.example.metodiapp.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.layout.BorderPane;
+import org.example.metodiapp.services.Navigation;
 
 public class HelloController {
 

@@ -13,7 +13,13 @@ module org.example.metodiapp {
     requires eu.hansolo.tilesfx;
     requires kotlin.stdlib;
 
-    // Abrimos el paquete a todos para facilitar el desarrollo con SceneBuilder
+    // Abre los paquetes principales para permitir el acceso por reflexión
     opens org.example.metodiapp;
+    opens org.example.metodiapp.controllers;
+    opens org.example.metodiapp.models;
+
+    // Abre el paquete de imágenes para los módulos que lo necesitan
+    opens org.example.metodiapp.images to javafx.graphics, javafx.fxml;
+
     exports org.example.metodiapp;
 }

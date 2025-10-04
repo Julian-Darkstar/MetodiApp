@@ -3,20 +3,13 @@ package org.example.metodiapp;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
-
-import java.io.IOException;
-import java.util.Objects;
 
 public class ReglaFalsaController {
 
@@ -27,16 +20,15 @@ public class ReglaFalsaController {
     @FXML private TextField toleranciaTextField;
     @FXML private TableView<IteracionReglaFalsa> tablaResultados;
     @FXML private Label raizLabel;
-    @FXML private Button calcularButton;
+    @FXML private Button calcularButton; // Se usará como nodo de contexto para la navegación
 
-    // --- Nuevos campos para el gráfico ---
+    // --- Campos para el gráfico (implementación existente) ---
     @FXML private LineChart<Number, Number> funcionChart;
     @FXML private TextField xMinField;
     @FXML private TextField xMaxField;
 
     /**
-     * Método que se ejecuta al presionar el botón "Graficar".
-     * Utiliza el GraphingService para dibujar la función en el LineChart.
+     * Método existente para graficar la función.
      */
     @FXML
     protected void graficar() {
@@ -50,7 +42,6 @@ public class ReglaFalsaController {
                 return;
             }
 
-            // Llama al servicio de graficación para que haga el trabajo
             GraphingService.plotFunction(funcionChart, funcionStr, xMin, xMax, 500);
 
         } catch (NumberFormatException e) {
@@ -121,15 +112,11 @@ public class ReglaFalsaController {
         }
     }
 
+    /**
+     * Vuelve a la pantalla de bienvenida utilizando la clase de navegación centralizada.
+     */
     @FXML
     protected void volver() {
-        try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/org/example/metodiapp/hello-view.fxml")));
-            Stage stage = (Stage) calcularButton.getScene().getWindow();
-            stage.setScene(new Scene(root));
-        } catch (IOException e) {
-            System.err.println("Error al volver a la pantalla de bienvenida:");
-            e.printStackTrace();
-        }
+        Navigation.navigateTo("hello-view.fxml", calcularButton);
     }
 }
