@@ -37,6 +37,7 @@ javafx {
 }
 
 dependencies {
+    implementation("net.objecthunter:exp4j:0.4.8") // Librería para evaluar expresiones
     implementation("org.controlsfx:controlsfx:11.2.1")
     implementation("com.dlsc.formsfx:formsfx-core:11.6.0") {
         exclude(group = "org.openjfx")
@@ -45,11 +46,7 @@ dependencies {
         exclude(group = "org.openjfx")
     }
     implementation("org.kordamp.ikonli:ikonli-javafx:12.3.1")
-    implementation("org.kordamp.bootstrapfx:bootstrapfx-core:0.4.0")
     implementation("eu.hansolo:tilesfx:21.0.9") {
-        exclude(group = "org.openjfx")
-    }
-    implementation("com.github.almasb:fxgl:17.3") {
         exclude(group = "org.openjfx")
     }
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.22")
