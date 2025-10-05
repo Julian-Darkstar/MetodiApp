@@ -5,6 +5,7 @@ module org.example.metodiapp {
     requires javafx.graphics;
     requires java.scripting;
     requires exp4j;
+    requires MathParser.org.mXparser; // Permiso para la nueva librería
 
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;

@@ -3,6 +3,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -15,8 +17,9 @@
             </padding>
             <children>
                 <Button text="Inicio" />
-                <Button onAction="#abrirReglaFalsa" text="Calcular Regla Falsa" />
+                <Button onAction="#abrirReglaFalsa" text="Regla Falsa" />
                 <Button onAction="#abrirGaussJordan" text="Gauss-Jordan" />
+                <Button onAction="#abrirNewtonRaphson" text="Newton-Raphson" />
                 <Button onAction="#abrirJacobi" text="Jacobi" />
             </children>
         </HBox>
@@ -27,12 +30,14 @@
                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
             </padding>
             <children>
+                <ImageView fx:id="logoImageView" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
                 <Label styleClass="h2" text="¡Bienvenido a la Aplicación de Métodos Numéricos!" textAlignment="CENTER" wrapText="true"/>
                 <Label text="Selecciona uno de los métodos disponibles a continuación para comenzar a calcular." textAlignment="CENTER" wrapText="true" />
                 <HBox alignment="CENTER" spacing="15.0">
                     <children>
                         <Button onAction="#abrirReglaFalsa" mnemonicParsing="false" text="Regla Falsa" styleClass="button-primary"/>
                         <Button onAction="#abrirGaussJordan" mnemonicParsing="false" text="Gauss-Jordan" styleClass="button-primary"/>
+                        <Button onAction="#abrirNewtonRaphson" mnemonicParsing="false" text="Newton-Raphson" styleClass="button-primary"/>
                         <Button onAction="#abrirJacobi" mnemonicParsing="false" text="Jacobi" styleClass="button-primary"/>
                     </children>
                 </HBox>

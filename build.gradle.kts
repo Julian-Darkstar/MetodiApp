@@ -37,6 +37,7 @@ javafx {
 }
 
 dependencies {
+    implementation("org.mariuszgromada.math:MathParser.org-mXparser:5.2.1") // Nueva librería para Newton-Raphson
     implementation("net.objecthunter:exp4j:0.4.8") // Librería para evaluar expresiones
     implementation("org.controlsfx:controlsfx:11.2.1")
     implementation("com.dlsc.formsfx:formsfx-core:11.6.0") {
