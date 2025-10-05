@@ -24,4 +24,13 @@ public class HelloController {
     protected void abrirGaussJordan() {
         Navigation.navigateTo("gauss-jordan-view.fxml", rootPane);
     }
+
+
+    /**
+     * Carga y muestra la vista del método de Jacobi utilizando la clase de navegación.
+     */
+    @FXML
+    protected void abrirJacobi() {
+        Navigation.navigateTo("Jacobi-view.fxml", rootPane);
+    }
 }

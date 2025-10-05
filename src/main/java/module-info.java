@@ -13,6 +13,7 @@ module org.example.metodiapp {
     requires eu.hansolo.tilesfx;
     requires kotlin.stdlib;
 
+
     // Abre los paquetes principales para permitir el acceso por reflexión
     opens org.example.metodiapp;
     opens org.example.metodiapp.controllers;
@@ -22,4 +23,5 @@ module org.example.metodiapp {
     opens org.example.metodiapp.images to javafx.graphics, javafx.fxml;
 
     exports org.example.metodiapp;
+    exports org.example.metodiapp.controllers;
 }

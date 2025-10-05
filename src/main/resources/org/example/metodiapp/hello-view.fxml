@@ -17,6 +17,7 @@
                 <Button text="Inicio" />
                 <Button onAction="#abrirReglaFalsa" text="Calcular Regla Falsa" />
                 <Button onAction="#abrirGaussJordan" text="Gauss-Jordan" />
+                <Button onAction="#abrirJacobi" text="Jacobi" />
             </children>
         </HBox>
     </top>
@@ -32,6 +33,7 @@
                     <children>
                         <Button onAction="#abrirReglaFalsa" mnemonicParsing="false" text="Regla Falsa" styleClass="button-primary"/>
                         <Button onAction="#abrirGaussJordan" mnemonicParsing="false" text="Gauss-Jordan" styleClass="button-primary"/>
+                        <Button onAction="#abrirJacobi" mnemonicParsing="false" text="Jacobi" styleClass="button-primary"/>
                     </children>
                 </HBox>
             </children>
