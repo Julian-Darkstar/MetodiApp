@@ -19,7 +19,12 @@
                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
             </padding>
             <children>
-                <Label styleClass="h3" text="Método de Eliminación de Gauss-Jordan" />
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <children>
+                        <Label styleClass="h3" text="Método de Eliminación de Gauss-Jordan" />
+                        <Button onAction="#mostrarAyuda" text="Ayuda" />
+                    </children>
+                </HBox>
                 <Label text="Instrucciones: Ingrese las dimensiones de la matriz aumentada (incluyendo la columna de resultados) y presione 'Crear Matriz'." wrapText="true" />
                 <HBox alignment="CENTER_LEFT" spacing="10.0">
                     <children>

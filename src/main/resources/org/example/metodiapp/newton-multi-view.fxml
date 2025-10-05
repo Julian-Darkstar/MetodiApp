@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.metodiapp.controllers.NewtonMultiController">
+    <top>
+        <VBox spacing="10">
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+            <children>
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <children>
+                        <Label styleClass="h3" text="Método de Newton-Raphson Multivariable (2x2)" />
+                        <Button onAction="#mostrarAyuda" text="Ayuda" />
+                    </children>
+                </HBox>
+                <Label text="Instrucciones: Ingrese las dos funciones, los valores iniciales para 'x' e 'y', y el error permitido." wrapText="true" />
+            </children>
+        </VBox>
+    </top>
+    <center>
+        <VBox spacing="10.0" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+            <children>
+                <HBox spacing="10.0">
+                    <children>
+                        <VBox HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label text="Función 1 (f₁(x,y)) = 0:" />
+                                <TextField fx:id="funcion1TextField" promptText="Ej: x^2 + y^2 - 4" />
+                            </children>
+                        </VBox>
+                        <VBox HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label text="Función 2 (f₂(x,y)) = 0:" />
+                                <TextField fx:id="funcion2TextField" promptText="Ej: x*y - 1" />
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+                <HBox spacing="10.0">
+                    <children>
+                        <VBox HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label text="Valor Inicial (x₀):" />
+                                <TextField fx:id="xInicialTextField" promptText="Ej: 1" />
+                            </children>
+                        </VBox>
+                        <VBox HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label text="Valor Inicial (y₀):" />
+                                <TextField fx:id="yInicialTextField" promptText="Ej: 2" />
+                            </children>
+                        </VBox>
+                        <VBox HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label text="Tolerancia (Error):" />
+                                <TextField fx:id="toleranciaTextField" promptText="Ej: 0.001" />
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+                <Button fx:id="calcularButton" mnemonicParsing="false" onAction="#calcular" text="Calcular Raíz" styleClass="button-primary" />
+                <Label text="Resultados de Iteraciones:" />
+                <TableView fx:id="tablaResultados" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colIteracion" prefWidth="40.0" text="N" />
+                        <TableColumn fx:id="colX" prefWidth="90.0" text="x_i" />
+                        <TableColumn fx:id="colY" prefWidth="90.0" text="y_i" />
+                        <TableColumn fx:id="colF1" prefWidth="90.0" text="f₁" />
+                        <TableColumn fx:id="colF2" prefWidth="90.0" text="f₂" />
+                        <TableColumn fx:id="colDf1dx" prefWidth="90.0" text="df₁/dx" />
+                        <TableColumn fx:id="colDf1dy" prefWidth="90.0" text="df₁/dy" />
+                        <TableColumn fx:id="colDf2dx" prefWidth="90.0" text="df₂/dx" />
+                        <TableColumn fx:id="colDf2dy" prefWidth="90.0" text="df₂/dy" />
+                        <TableColumn fx:id="colErrorX" prefWidth="90.0" text="Error (x)" />
+                        <TableColumn fx:id="colErrorY" prefWidth="90.0" text="Error (y)" />
+                    </columns>
+                </TableView>
+                <Label fx:id="raizLabel" styleClass="h3" text="Raíz: " />
+            </children>
+        </VBox>
+    </center>
+    <bottom>
+        <HBox alignment="CENTER_LEFT" prefHeight="40.0" spacing="10.0">
+            <padding>
+                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+            </padding>
+            <children>
+                <Button fx:id="reiniciarButton" onAction="#reiniciar" text="Reiniciar" />
+                <Region HBox.hgrow="ALWAYS" />
+                <Button fx:id="volverButton" mnemonicParsing="false" onAction="#volver" text="Volver" />
+            </children>
+        </HBox>
+    </bottom>
+</BorderPane>

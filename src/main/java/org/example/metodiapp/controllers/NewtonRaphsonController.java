@@ -4,6 +4,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 import org.example.metodiapp.models.IteracionNewton;
 import org.example.metodiapp.services.Navigation;
 import org.mariuszgromada.math.mxparser.Argument;
@@ -33,7 +35,6 @@ public class NewtonRaphsonController {
 
     @FXML
     public void initialize() {
-        // Conexión manual y explícita de las columnas
         colIteracion.setCellValueFactory(cellData -> cellData.getValue().iteracionProperty());
         colXi.setCellValueFactory(cellData -> cellData.getValue().xiProperty());
         colFxi.setCellValueFactory(cellData -> cellData.getValue().fxiProperty());
@@ -41,9 +42,52 @@ public class NewtonRaphsonController {
         colXi1.setCellValueFactory(cellData -> cellData.getValue().xi1Property());
         colError.setCellValueFactory(cellData -> cellData.getValue().errorProperty());
 
-        // Vincula la lista de datos a la tabla
         iteraciones = FXCollections.observableArrayList();
         tablaResultados.setItems(iteraciones);
+    }
+
+    @FXML
+    protected void mostrarAyuda() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Ayuda - Sintaxis de Funciones");
+        alert.setHeaderText("Cómo escribir funciones matemáticas");
+
+        String ayudaTexto = "Use 'x' como la variable.\n\n" +
+                "Operadores Aritméticos:\n" +
+                "  +  (suma)\n" +
+                "  -  (resta)\n" +
+                "  *  (multiplicación)\n" +
+                "  /  (división)\n" +
+                "  ^  (potencia, ej: x^2)\n\n" +
+                "Funciones Comunes:\n" +
+                "  sin(x), cos(x), tan(x)\n" +
+                "  asin(x), acos(x), atan(x)\n" +
+                "  sqrt(x)  (raíz cuadrada)\n" +
+                "  exp(x)  (e elevado a la x)\n\n" +
+                "Logaritmos:\n" +
+                "  ln(x)    (logaritmo natural)\n" +
+                "  log10(x) (logaritmo base 10)\n" +
+                "  log(base, x) (logaritmo en cualquier base)\n\n" +
+                "Constantes:\n" +
+                "  pi\n" +
+                "  e";
+
+        TextArea textArea = new TextArea(ayudaTexto);
+        textArea.setEditable(false);
+        textArea.setWrapText(true);
+        textArea.setMaxWidth(Double.MAX_VALUE);
+        textArea.setMaxHeight(Double.MAX_VALUE);
+        GridPane.setVgrow(textArea, Priority.ALWAYS);
+        GridPane.setHgrow(textArea, Priority.ALWAYS);
+
+        GridPane expContent = new GridPane();
+        expContent.setMaxWidth(Double.MAX_VALUE);
+        expContent.add(textArea, 0, 0);
+
+        alert.getDialogPane().setExpandableContent(expContent);
+        alert.getDialogPane().setExpanded(true);
+
+        alert.showAndWait();
     }
 
     @FXML
@@ -56,7 +100,6 @@ public class NewtonRaphsonController {
             double raiz = Double.parseDouble(valorInicialTextField.getText());
             double errorPermitido = Double.parseDouble(errorTextField.getText());
 
-            // Preparar la función y su derivada con mxparser
             Argument x = new Argument("x");
             Expression funcion = new Expression(funcionStr, x);
             Expression derivada = new Expression("der(" + funcionStr + ", x)", x);
@@ -80,7 +123,6 @@ public class NewtonRaphsonController {
                 double nuevaRaiz = raiz - (valorFuncion / valorDerivada);
                 errorCalculado = (Math.abs(nuevaRaiz) > 1E-12) ? Math.abs((nuevaRaiz - raiz) / nuevaRaiz) * 100 : 0.0;
 
-                // Añade la nueva iteración a la tabla
                 iteraciones.add(new IteracionNewton(iteracion, raiz, valorFuncion, valorDerivada, nuevaRaiz, errorCalculado));
 
                 raiz = nuevaRaiz;

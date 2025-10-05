@@ -29,7 +29,12 @@
                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
             </padding>
             <children>
-                <Label text="Función f(x):" />
+                <HBox alignment="CENTER_LEFT" spacing="5.0">
+                    <children>
+                        <Label text="Función f(x):" />
+                        <Button onAction="#mostrarAyuda" text="Ayuda" />
+                    </children>
+                </HBox>
                 <TextField fx:id="funcionTextField" promptText="Ej: exp(-x) - x" />
                 <HBox spacing="10.0">
                     <children>

@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 import org.example.metodiapp.services.Navigation;
 
 import java.util.ArrayList;
@@ -19,13 +20,51 @@ public class GaussJordanController {
 
     @FXML private TextField filasTextField;
     @FXML private TextField columnasTextField;
-    @FXML private GridPane headerGridPane; // Nuevo para las cabeceras
+    @FXML private GridPane headerGridPane;
     @FXML private GridPane matrizGridPane;
     @FXML private Button volverButton;
     @FXML private TextArea resultadoTextArea;
 
     private List<List<TextField>> matrizTextFields = new ArrayList<>();
     private double[][] matriz;
+
+    @FXML
+    protected void mostrarAyuda() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Ayuda - Matriz Aumentada");
+        alert.setHeaderText("Cómo ingresar un sistema de ecuaciones");
+
+        String ayudaTexto = "Este método resuelve sistemas de ecuaciones lineales (ej: 2x + y = 5).\n\n" +
+                "1. Represente su sistema como una 'Matriz Aumentada'.\n" +
+                "   Las columnas de la izquierda son los coeficientes de las variables (x, y, z, ...).\n" +
+                "   La última columna de la derecha es el resultado de cada ecuación.\n\n" +
+                "Ejemplo para el sistema:\n" +
+                "   2x + 1y = 8\n" +
+                "   1x - 3y = -1\n\n" +
+                "Dimensiones a ingresar:\n" +
+                "   - Filas (m): 2 (porque hay 2 ecuaciones)\n" +
+                "   - Columnas (n): 3 (2 variables + 1 columna de resultados)\n\n" +
+                "Matriz a llenar en la cuadrícula:\n" +
+                "   | 2.0   1.0  |  8.0 |\n" +
+                "   | 1.0  -3.0  | -1.0 |\n";
+
+        TextArea textArea = new TextArea(ayudaTexto);
+        textArea.setEditable(false);
+        textArea.setWrapText(true);
+        textArea.setMaxWidth(Double.MAX_VALUE);
+        textArea.setMaxHeight(Double.MAX_VALUE);
+        GridPane.setVgrow(textArea, Priority.ALWAYS);
+        GridPane.setHgrow(textArea, Priority.ALWAYS);
+
+        GridPane expContent = new GridPane();
+        expContent.setMaxWidth(Double.MAX_VALUE);
+        expContent.add(textArea, 0, 0);
+
+        alert.getDialogPane().setExpandableContent(expContent);
+        alert.getDialogPane().setExpanded(true);
+
+        alert.showAndWait();
+    }
 
     @FXML
     protected void crearMatriz() {
@@ -38,19 +77,12 @@ public class GaussJordanController {
                 return;
             }
 
-            // Limpiar cuadrículas anteriores
             headerGridPane.getChildren().clear();
             matrizGridPane.getChildren().clear();
             matrizTextFields.clear();
 
-            // Crear cabeceras de columna
             for (int j = 0; j < columnas; j++) {
-                String headerText;
-                if (j < columnas - 1) {
-                    headerText = "x" + (j + 1);
-                } else {
-                    headerText = "Resultado";
-                }
+                String headerText = (j < columnas - 1) ? "x" + (j + 1) : "Resultado";
                 Label headerLabel = new Label(headerText);
                 headerLabel.setStyle("-fx-font-weight: bold;");
                 headerLabel.setAlignment(Pos.CENTER);
@@ -58,7 +90,6 @@ public class GaussJordanController {
                 headerGridPane.add(headerLabel, j, 0);
             }
 
-            // Crear campos de texto para la matriz
             for (int i = 0; i < filas; i++) {
                 List<TextField> filaDeTextFields = new ArrayList<>();
                 for (int j = 0; j < columnas; j++) {
@@ -126,23 +157,37 @@ public class GaussJordanController {
             Set<Integer> filasModificadas = new HashSet<>();
             List<String> operaciones = new ArrayList<>();
 
-            // ... (Lógica de intercambio de filas si el pivote es cero) ...
+            if (Math.abs(matriz[pivote][pivote]) < 1e-9) {
+                 int filaNoCero = -1;
+                for (int i = pivote + 1; i < filas; i++) {
+                    if (Math.abs(matriz[i][pivote]) > 1e-9) {
+                        filaNoCero = i;
+                        break;
+                    }
+                }
+                if(filaNoCero != -1) {
+                    double[] temp = matriz[pivote];
+                    matriz[pivote] = matriz[filaNoCero];
+                    matriz[filaNoCero] = temp;
+                    operaciones.add(String.format("Intercambio R%d ↔ R%d", pivote + 1, filaNoCero + 1));
+                    filasModificadas.add(pivote);
+                    filasModificadas.add(filaNoCero);
+                }
+            }
 
             double divisor = matriz[pivote][pivote];
-            if (Math.abs(divisor) < 1e-9) continue; // No se puede dividir por cero
+            if (Math.abs(divisor) < 1e-9) continue;
 
-            // Normalizar la fila del pivote
             operaciones.add(String.format("R%d → R%d / %.3f", pivote + 1, pivote + 1, divisor));
             filasModificadas.add(pivote);
             for (int j = pivote; j < columnas; j++) {
                 matriz[pivote][j] /= divisor;
             }
 
-            // Hacer ceros en las otras filas
             for (int i = 0; i < filas; i++) {
                 if (i != pivote) {
                     double factor = matriz[i][pivote];
-                    if (Math.abs(factor) > 1e-9) { // Solo si es necesario
+                    if (Math.abs(factor) > 1e-9) {
                         operaciones.add(String.format("R%d → R%d - (%.3f * R%d)", i + 1, i + 1, factor, pivote + 1));
                         filasModificadas.add(i);
                         for (int j = pivote; j < columnas; j++) {
@@ -181,7 +226,6 @@ public class GaussJordanController {
     }
 
     private String solucionToString() {
-        // ... (El método solucionToString se mantiene igual, pero podría mejorarse en el futuro)
         StringBuilder sb = new StringBuilder();
         int filas = matriz.length;
         int vars = matriz[0].length - 1;

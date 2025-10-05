@@ -32,7 +32,12 @@
             <children>
                 <VBox minWidth="300.0" spacing="10.0" HBox.hgrow="NEVER">
                     <children>
-                        <Label text="Función f(x):" />
+                        <HBox alignment="CENTER_LEFT" spacing="5.0">
+                            <children>
+                                <Label text="Función f(x):" />
+                                <Button onAction="#mostrarAyuda" text="Ayuda" />
+                            </children>
+                        </HBox>
                         <TextField fx:id="funcionTextField" promptText="Ej: x^3 - x - 1" />
                         <HBox spacing="10.0">
                             <children>

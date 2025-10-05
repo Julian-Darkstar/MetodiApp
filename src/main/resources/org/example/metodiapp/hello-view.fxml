@@ -20,6 +20,7 @@
                 <Button onAction="#abrirReglaFalsa" text="Regla Falsa" />
                 <Button onAction="#abrirGaussJordan" text="Gauss-Jordan" />
                 <Button onAction="#abrirNewtonRaphson" text="Newton-Raphson" />
+                <Button onAction="#abrirNewtonMulti" text="Newton Multivariable" />
                 <Button onAction="#abrirJacobi" text="Jacobi" />
             </children>
         </HBox>
@@ -38,6 +39,7 @@
                         <Button onAction="#abrirReglaFalsa" mnemonicParsing="false" text="Regla Falsa" styleClass="button-primary"/>
                         <Button onAction="#abrirGaussJordan" mnemonicParsing="false" text="Gauss-Jordan" styleClass="button-primary"/>
                         <Button onAction="#abrirNewtonRaphson" mnemonicParsing="false" text="Newton-Raphson" styleClass="button-primary"/>
+                        <Button onAction="#abrirNewtonMulti" mnemonicParsing="false" text="Newton Multivariable" styleClass="button-primary"/>
                         <Button onAction="#abrirJacobi" mnemonicParsing="false" text="Jacobi" styleClass="button-primary"/>
                     </children>
                 </HBox>

@@ -5,6 +5,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
 import org.example.metodiapp.models.IteracionReglaFalsa;
@@ -33,29 +35,71 @@ public class ReglaFalsaController {
     @FXML private TableColumn<IteracionReglaFalsa, Number> colIteracion;
     @FXML private TableColumn<IteracionReglaFalsa, Number> colA;
     @FXML private TableColumn<IteracionReglaFalsa, Number> colB;
-    @FXML private TableColumn<IteracionReglaFalsa, Number> colFa; // Nueva columna
-    @FXML private TableColumn<IteracionReglaFalsa, Number> colFb; // Nueva columna
-    @FXML private TableColumn<IteracionReglaFalsa, Number> colXr; // Renombrada
-    @FXML private TableColumn<IteracionReglaFalsa, Number> colFxr; // Renombrada
+    @FXML private TableColumn<IteracionReglaFalsa, Number> colFa;
+    @FXML private TableColumn<IteracionReglaFalsa, Number> colFb;
+    @FXML private TableColumn<IteracionReglaFalsa, Number> colXr;
+    @FXML private TableColumn<IteracionReglaFalsa, Number> colFxr;
     @FXML private TableColumn<IteracionReglaFalsa, Number> colError;
 
     private ObservableList<IteracionReglaFalsa> iteraciones;
 
     @FXML
     public void initialize() {
-        // Conexión manual y explícita de las columnas a las propiedades del modelo
         colIteracion.setCellValueFactory(cellData -> cellData.getValue().iteracionProperty());
         colA.setCellValueFactory(cellData -> cellData.getValue().aProperty());
         colB.setCellValueFactory(cellData -> cellData.getValue().bProperty());
-        colFa.setCellValueFactory(cellData -> cellData.getValue().faProperty()); // Conexión nueva
-        colFb.setCellValueFactory(cellData -> cellData.getValue().fbProperty()); // Conexión nueva
-        colXr.setCellValueFactory(cellData -> cellData.getValue().xrProperty()); // Conexión actualizada
-        colFxr.setCellValueFactory(cellData -> cellData.getValue().fxrProperty()); // Conexión actualizada
+        colFa.setCellValueFactory(cellData -> cellData.getValue().faProperty());
+        colFb.setCellValueFactory(cellData -> cellData.getValue().fbProperty());
+        colXr.setCellValueFactory(cellData -> cellData.getValue().xrProperty());
+        colFxr.setCellValueFactory(cellData -> cellData.getValue().fxrProperty());
         colError.setCellValueFactory(cellData -> cellData.getValue().errorProperty());
 
-        // Vincula la lista de datos a la tabla
         iteraciones = FXCollections.observableArrayList();
         tablaResultados.setItems(iteraciones);
+    }
+
+    @FXML
+    protected void mostrarAyuda() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Ayuda - Sintaxis de Funciones");
+        alert.setHeaderText("Cómo escribir funciones matemáticas");
+
+        String ayudaTexto = "Use 'x' como la variable.\n\n" +
+                "Operadores Aritméticos:\n" +
+                "  +  (suma)\n" +
+                "  -  (resta)\n" +
+                "  *  (multiplicación)\n" +
+                "  /  (división)\n" +
+                "  ^  (potencia, ej: x^2)\n\n" +
+                "Funciones Comunes:\n" +
+                "  sin(x), cos(x), tan(x)\n" +
+                "  asin(x), acos(x), atan(x)\n" +
+                "  sqrt(x)  (raíz cuadrada)\n" +
+                "  exp(x)  (e elevado a la x)\n\n" +
+                "Logaritmos:\n" +
+                "  ln(x)    (logaritmo natural)\n" +
+                "  log10(x) (logaritmo base 10)\n" +
+                "  log(base, x) (logaritmo en cualquier base)\n\n" +
+                "Constantes:\n" +
+                "  pi\n" +
+                "  e";
+
+        TextArea textArea = new TextArea(ayudaTexto);
+        textArea.setEditable(false);
+        textArea.setWrapText(true);
+        textArea.setMaxWidth(Double.MAX_VALUE);
+        textArea.setMaxHeight(Double.MAX_VALUE);
+        GridPane.setVgrow(textArea, Priority.ALWAYS);
+        GridPane.setHgrow(textArea, Priority.ALWAYS);
+
+        GridPane expContent = new GridPane();
+        expContent.setMaxWidth(Double.MAX_VALUE);
+        expContent.add(textArea, 0, 0);
+
+        alert.getDialogPane().setExpandableContent(expContent);
+        alert.getDialogPane().setExpanded(true);
+
+        alert.showAndWait();
     }
 
     @FXML
@@ -96,7 +140,7 @@ public class ReglaFalsaController {
                 return;
             }
 
-            double xr = a; // Renombrada de 'c'
+            double xr = a;
             int iter = 0;
             double error = Double.MAX_VALUE;
 
@@ -109,7 +153,6 @@ public class ReglaFalsaController {
                 double fxr = f(expr, xr);
                 error = Math.abs(xr - xr_anterior);
 
-                // Pasa los nuevos valores (fa, fb) al crear el objeto de la iteración
                 iteraciones.add(new IteracionReglaFalsa(iter, a, b, fa, fb, xr, fxr, error));
 
                 if (fxr == 0.0) break;
