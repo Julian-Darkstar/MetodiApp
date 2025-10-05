@@ -2,7 +2,10 @@
 
 .root {
     -fx-background-color: #2b2b2b;
-    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    /* Se establece Roboto como fuente principal, con respaldos estándar. */
+    -fx-font-family: "Roboto", "Segoe UI", Arial, sans-serif;
+    /* Se aumenta el tamaño de fuente base para mejorar la legibilidad. */
+    -fx-font-size: 14px;
 }
 
 .label {
@@ -24,7 +27,7 @@
     -fx-background-color: #3e8e41;
 }
 
-/* Estilo para botones primarios/grandes */
+/* Estilo para botones primarios/grandes. El tamaño es relativo (em) y escalará con la fuente base. */
 .button-primary {
     -fx-background-color: #008CBA; /* Un azul distintivo */
     -fx-font-size: 1.2em;
@@ -51,6 +54,7 @@
     -fx-background-color: #3c3f41;
 }
 
+/* Los títulos usan tamaños relativos (em) para escalar proporcionalmente. */
 .h2 {
     -fx-font-size: 1.8em;
     -fx-font-weight: bold;
