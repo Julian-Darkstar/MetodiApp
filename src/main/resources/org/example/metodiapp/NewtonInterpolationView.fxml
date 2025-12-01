@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="650.0" prefWidth="800.0"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.example.metodiapp.controllers.NewtonInterpolationController">
+
+    <top>
+        <VBox spacing="10.0">
+            <padding>
+                <Insets left="20.0" right="20.0" top="15.0" bottom="10.0" />
+            </padding>
+            <children>
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <children>
+                        <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Interpolación por Diferencias Divididas de Newton" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Button text="Ayuda" onAction="#mostrarAyuda" />
+                    </children>
+                </HBox>
+
+                <HBox spacing="15" alignment="CENTER_LEFT">
+                    <children>
+                        <VBox>
+                            <children>
+                                <Label text="Valor X:" />
+                                <TextField fx:id="inputX" promptText="X" prefWidth="80" />
+                            </children>
+                        </VBox>
+                        <VBox>
+                            <children>
+                                <Label text="Valor Y (f(x)):" />
+                                <TextField fx:id="inputY" promptText="f(X)" prefWidth="80" />
+                            </children>
+                        </VBox>
+                        <Button text="Agregar Punto" onAction="#agregarPunto" />
+                        <Button text="Limpiar Puntos" onAction="#limpiarPuntos" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </top>
+
+    <center>
+        <VBox VBox.vgrow="ALWAYS" spacing="10">
+            <padding>
+                <Insets left="20.0" right="20.0" top="10.0" bottom="10.0" />
+            </padding>
+            <children>
+                <Label text="Puntos Ingresados (Nodos):" style="-fx-font-weight: bold;" />
+                <TableView fx:id="tablaDatos" VBox.vgrow="ALWAYS" prefHeight="200.0">
+                    <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                    </columnResizePolicy>
+                    <columns>
+                        <TableColumn fx:id="colX" text="X" prefWidth="150" />
+                        <TableColumn fx:id="colY" text="Y (f(x))" prefWidth="150" />
+                    </columns>
+                </TableView>
+            </children>
+        </VBox>
+    </center>
+
+    <bottom>
+        <VBox spacing="10.0">
+            <padding>
+                <Insets left="20.0" right="20.0" top="10.0" bottom="15.0" />
+            </padding>
+            <children>
+                <Separator />
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <children>
+                        <Label text="Estimar f(x) para x =" style="-fx-font-weight: bold;" />
+                        <TextField fx:id="inputEvalX" promptText="Valor a evaluar" prefWidth="100" />
+                        <Button text="Calcular Interpolación" onAction="#calcularNewton" style="-fx-base: #b6e7c9; -fx-font-weight: bold;" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Button fx:id="volverButton" text="Volver" onAction="#volver" />
+                        <Button text="Reiniciar" onAction="#reiniciarPantalla" styleClass="button-secondary"/>
+                    </children>
+                </HBox>
+
+                <Label text="Resultados del Polinomio:" style="-fx-font-weight: bold;" />
+                <TextArea fx:id="areaResultados" editable="false" prefHeight="200"
+                          style="-fx-font-family: 'Monospaced';"/>
+            </children>
+        </VBox>
+    </bottom>
+</BorderPane>

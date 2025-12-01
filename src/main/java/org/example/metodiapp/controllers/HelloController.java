@@ -61,4 +61,8 @@ public class HelloController {
     protected void abrirJacobi() {
         Navigation.navigateTo("Jacobi-view.fxml", rootPane);
     }
+    @FXML
+    protected void abrirIDPN() {
+        Navigation.navigateTo("NewtonInterpolationVIew.fxml", rootPane);
+    }
 }

@@ -15,6 +15,7 @@ module org.example.metodiapp {
     requires kotlin.stdlib;
 
 
+
     // Abre los paquetes principales para permitir el acceso por reflexión
     opens org.example.metodiapp;
     opens org.example.metodiapp.controllers;
