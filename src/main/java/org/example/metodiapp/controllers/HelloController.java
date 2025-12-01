@@ -64,4 +64,9 @@ public class HelloController {
     protected void abrirInterpolacionCuadratica() {
         Navigation.navigateTo("interpolacion-cuadratica-view.fxml", rootPane);
     }
+
+    @FXML
+    protected void abrirMultipleRegression() {
+        Navigation.navigateTo("multiple-regression-view.fxml", rootPane);
+    }
 }

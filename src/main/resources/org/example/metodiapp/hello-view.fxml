@@ -44,6 +44,7 @@
                         <Button onAction="#abrirJacobi" mnemonicParsing="false" text="Jacobi" styleClass="button-primary"/>
                         <Button onAction="#abrirIDPN" mnemonicParsing="false" text="Interpolacion por diferencias de polinomios de newton" styleClass="button-primary"/>
                         <Button onAction="#abrirInterpolacionCuadratica" mnemonicParsing="false" text="Interpolación Cuadrática" styleClass="button-primary"/>
+                        <Button onAction="#abrirMultipleRegression" mnemonicParsing="false" text="Regresión Múltiple" styleClass="button-primary"/>
                     </children>
                 </HBox>
             </children>
