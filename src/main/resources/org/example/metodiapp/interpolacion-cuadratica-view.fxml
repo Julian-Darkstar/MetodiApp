@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootPane" prefHeight="600.0" prefWidth="800.0" styleClass="anchor-pane" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.metodiapp.controllers.InterpolacionCuadraticaController">
+    <children>
+        <Button onAction="#mostrarAyuda" text="Ayuda" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+        <VBox alignment="TOP_CENTER" layoutX="250.0" layoutY="50.0" spacing="20.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+            <children>
+                <Label styleClass="title-label" text="Interpolación Cuadrática" />
+                <HBox alignment="CENTER" spacing="10.0">
+                    <children>
+                        <Label text="Punto 0 (x0, y0):" />
+                        <TextField fx:id="x0Field" promptText="x0" />
+                        <TextField fx:id="y0Field" promptText="y0" />
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" spacing="10.0">
+                    <children>
+                        <Label text="Punto 1 (x1, y1):" />
+                        <TextField fx:id="x1Field" promptText="x1" />
+                        <TextField fx:id="y1Field" promptText="y1" />
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" spacing="10.0">
+                    <children>
+                        <Label text="Punto 2 (x2, y2):" />
+                        <TextField fx:id="x2Field" promptText="x2" />
+                        <TextField fx:id="y2Field" promptText="y2" />
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" spacing="10.0">
+                    <children>
+                        <Label text="Valor de x a interpolar:" />
+                        <TextField fx:id="xField" promptText="x" />
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" spacing="15.0">
+                    <children>
+                        <Button onAction="#calcular" text="Calcular" />
+                        <Button onAction="#limpiar" text="Limpiar" />
+                        <Button onAction="#volverAlMenu" text="Volver al Menú" />
+                    </children>
+                </HBox>
+                <Label fx:id="resultadoLabel" styleClass="results-label" text="Resultado:" />
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

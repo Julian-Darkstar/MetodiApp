@@ -4,30 +4,24 @@ import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
-import org.example.metodiapp.services.Navigation;
+import org.example.metodiapp.Navigation;
 
 import java.io.InputStream;
 
 public class HelloController {
 
     @FXML
-    private BorderPane rootPane; // Necesario para obtener el contexto de la escena
+    private BorderPane rootPane;
 
     @FXML
-    private VBox logoContainer; // El VBox vacío que preparamos en el FXML
+    private ImageView logoImageView;
 
     @FXML
     public void initialize() {
-        // Carga la imagen de forma programática, que es más robusto que hacerlo en FXML.
         try (InputStream logoStream = getClass().getResourceAsStream("/org/example/metodiapp/images/logoMetodiApp.png")) {
             if (logoStream != null) {
                 Image logo = new Image(logoStream);
-                ImageView logoView = new ImageView(logo);
-                logoView.setFitHeight(150);
-                logoView.setFitWidth(150);
-                logoView.setPreserveRatio(true);
-                logoContainer.getChildren().add(logoView);
+                logoImageView.setImage(logo);
             } else {
                 System.err.println("ADVERTENCIA: No se pudo cargar el logo en la vista principal. Recurso no encontrado.");
             }
@@ -64,5 +58,10 @@ public class HelloController {
     @FXML
     protected void abrirIDPN() {
         Navigation.navigateTo("NewtonInterpolationVIew.fxml", rootPane);
+    }
+
+    @FXML
+    protected void abrirInterpolacionCuadratica() {
+        Navigation.navigateTo("interpolacion-cuadratica-view.fxml", rootPane);
     }
 }
